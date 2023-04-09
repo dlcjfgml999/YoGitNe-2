@@ -1,0 +1,23 @@
+language: python
+python:
+  - "3.6"
+
+# command to install dependencies
+install:
+  - pip3 install -r YoGitNeBackEnd/requirements.txt
+  - pip3 install requests
+  - pip3 install coverage
+
+# run server
+before_script:
+  - python3 YoGitNeBackEnd/manage.py makemigrations YoGitNeAPI
+  - python3 YoGitNeBackEnd/manage.py migrate
+  - python3 YoGitNeBackEnd/manage.py runserver 0.0.0.0:8000 &
+#  - python3 YoGitNeBackEnd/manage.py runserver [::]:8000 &
+
+# command to run tests
+script:
+  - coverage run --source='YoGitNeBackEnd/YoGitNeAPI/' YoGitNeBackEnd/manage.py test YoGitNeBackEnd/tests/
+  - coverage report
+  - python3 tests/wait_runserver.py
+  #- python3 YoGitNeBackEnd/manage.py shell < tests/runtest.pys

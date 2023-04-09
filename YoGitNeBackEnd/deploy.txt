@@ -1,0 +1,16 @@
+setting Debug = False
+delete url 'signup get'
+
+git pull http://github.com/jonghu/yogitne.git -b [branch name]
+virtualenv
+pip3 install -r requirements.txt
+(pip3 issue : https://stackoverflow.com/questions/49836676/python-pip3-cannot-import-name-main-error-after-upgrading-pip)
+
+python3 manage.py makemigrations YoGitNeAPI
+python3 manage.py migrate
+python3 manage.py createsuperuser
+python3 manage.py runserver 0:8000
+
+USE screen!
+http://dreamlog.tistory.com/470
+http://www.incodom.kr/Linux/%EA%B8%B0%EB%B3%B8%EB%AA%85%EB%A0%B9%EC%96%B4/screen#h_fead19c17988ebb2b16fd79bdef03bf8

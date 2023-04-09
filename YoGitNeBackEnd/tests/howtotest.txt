@@ -1,0 +1,3 @@
+pip3 install coverage
+coverage run --source='.' manage.py test tests/
+coverage report
